@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="867bb08e-373f-4d59-88b4-1021f09f691d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/danet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/danet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,6 +134,10 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/pimple/pimple" />
+      <path value="$PROJECT_DIR$/vendor/deployer/phar-update" />
+      <path value="$PROJECT_DIR$/vendor/deployer/deployer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gN6lF7C0wcNxebZYelmzpS0TGM" />
@@ -149,7 +150,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../want-holiday" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -160,7 +161,11 @@
     <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/app/Models" />
     </key>
   </component>
@@ -180,7 +185,7 @@
       <updated>1597942852323</updated>
       <workItem from="1597942853404" duration="2486000" />
       <workItem from="1598119512983" duration="628000" />
-      <workItem from="1598191692370" duration="2192000" />
+      <workItem from="1598191692370" duration="4291000" />
     </task>
     <task id="LOCAL-00001" summary="Создан seed для пользователя">
       <created>1597944658340</created>
@@ -189,15 +194,26 @@
       <option name="project" value="LOCAL" />
       <updated>1597944658340</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Добавлены модели, миграции, контроллер для cards">
+      <created>1598197066772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1598197066772</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Создан seed для пользователя" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создан seed для пользователя" />
+    <MESSAGE value="Добавлены модели, миграции, контроллер для cards" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены модели, миграции, контроллер для cards" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="588" y="214" width="800" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597944402473">
@@ -212,10 +228,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="751" y="426" width="474" height="253" key="#com.jetbrains.php.refactoring.move.PhpMoveClassDialog#1/67.27.1853.1053@67.27.1853.1053" timestamp="1598196832364" />
-    <state x="558" y="120" width="860" height="864" key="CommitChangelistDialog2" timestamp="1597944658175">
+    <state x="558" y="120" width="860" height="864" key="CommitChangelistDialog2" timestamp="1598197066637">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="558" y="120" width="860" height="864" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1597944658175" />
+    <state x="558" y="120" width="860" height="864" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1598197066637" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1598191706082">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
