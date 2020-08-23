@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\CardContent;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class CardController extends Controller
 {
@@ -28,13 +31,31 @@ class CardController extends Controller
     public function store(Request $request)
     {
         $card = new Card();
-        $card->image = uniqid('', true);
+        $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {
             $this->createContent($card->id, 'ru', $request->input('content.ru') ?? []);
             $this->createContent($card->id, 'en', $request->input('content.en') ?? []);
         }
-        return back()->with('success', 'Created');
+        return redirect()->route('admin.cards.edit', ['card' => $card->id])->with('success', 'Created');
+    }
+
+    protected function saveImage(Card $card, ?UploadedFile $uploadedFile = null)
+    {
+        if ($uploadedFile !== null) {
+            $oldImage = $card->image;
+            $hashName = $uploadedFile->hashName();
+            $uploadedFile->storeAs(config('settings.card.image_dir'), $hashName, ['disk' => 'public']);
+            $card->image = $hashName;
+            $this->removeImage($oldImage);
+        }
+    }
+
+    protected function removeImage(?string $image = null)
+    {
+        if ($image !== null) {
+            Storage::disk('public')->delete(config('settings.card.image_dir') . '/' . $image);
+        }
     }
 
     protected function createContent(int $cardId, string $lang, $data = [])
@@ -62,7 +83,7 @@ class CardController extends Controller
 
     public function update(Request $request, Card $card)
     {
-        $card->image = uniqid('', true);
+        $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {
             $this->createContent($card->id, 'ru', $request->input('content.ru') ?? []);
@@ -73,6 +94,7 @@ class CardController extends Controller
 
     public function destroy(Card $card)
     {
+        $this->removeImage($card->image);
         $card->delete();
         return redirect()->route('admin.cards.index')->with('success', 'Deleted');
     }

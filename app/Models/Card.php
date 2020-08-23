@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Card extends Model
 {
@@ -27,6 +28,14 @@ class Card extends Model
     public function getContent(string $lang)
     {
         return $this->contents->firstWhere('lang', $lang);
+    }
+
+    public function getImageUrlAttribute($image)
+    {
+        if ($this->attributes['image'] === null) {
+            return null;
+        }
+        return Storage::disk('public')->url(config('settings.card.image_dir') . '/' . $this->attributes['image']);
     }
 
 }

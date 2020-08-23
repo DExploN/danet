@@ -4,6 +4,7 @@
         <form action="{{route('admin.cards.update',['card'=>$card->id])}}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
+            <img src="{{$card->imageUrl}}"/>
             @include('admin.cards.form')
 
             <button type="submit" class="btn btn-success">Update</button>
