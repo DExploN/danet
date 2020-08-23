@@ -77,7 +77,7 @@
     <main class="py-4">
         <div class="container mb-2">
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger d-flex justify-content-between">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

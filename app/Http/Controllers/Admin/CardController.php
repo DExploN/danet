@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CardRequest;
 use App\Models\Card;
 use App\Models\CardContent;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class CardController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CardRequest $request)
     {
         $card = new Card();
         $this->saveImage($card, $request->file('image'));
@@ -81,7 +82,7 @@ class CardController extends Controller
     }
 
 
-    public function update(Request $request, Card $card)
+    public function update(CardRequest $request, Card $card)
     {
         $this->saveImage($card, $request->file('image'));
         $card->save();
