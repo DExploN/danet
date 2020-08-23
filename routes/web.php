@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false , 'reset' => false]);
-
+Auth::routes(['register' => false, 'reset' => false]);
+Route::middleware(['auth'])->prefix('admin')->name('admin')->group(
+    function () {
+        Route::resource('cards', CardController::class);
+    }
+);
 Route::get('/home', 'HomeController@index')->name('home');
