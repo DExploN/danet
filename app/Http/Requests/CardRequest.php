@@ -25,7 +25,7 @@ class CardRequest extends FormRequest
     {
         return [
             'content.ru.title' => ['required', 'max:255', 'min:3'],
-            'image' => ['image', 'file', 'size:1024']
+            'image' => ['image', 'file', 'max:1024']
         ];
     }
 
