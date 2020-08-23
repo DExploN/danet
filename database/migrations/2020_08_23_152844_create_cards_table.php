@@ -17,7 +17,7 @@ class CreateCardsTable extends Migration
             'cards',
             function (Blueprint $table) {
                 $table->id();
-                $table->string('image', 255);
+                $table->string('image', 255)->nullable(true);
                 $table->timestamps();
             }
         );

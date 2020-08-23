@@ -4,83 +4,76 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Card;
+use App\Models\CardContent;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $cards = Card::withContent('ru')->paginate(2);
+        return view('admin.cards.list', ['cards' => $cards]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.cards.create', ['card' => new Card()]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $card = new Card();
+        $card->image = uniqid('', true);
+        $card->save();
+        if ($card->id !== null) {
+            $this->createContent($card->id, 'ru', $request->input('content.ru') ?? []);
+            $this->createContent($card->id, 'en', $request->input('content.en') ?? []);
+        }
+        return back()->with('success', 'Created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Card $card
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Card $card)
+    protected function createContent(int $cardId, string $lang, $data = [])
     {
-        //
+        CardContent::updateOrCreate(
+            [
+                'lang' => $lang,
+                'card_id' => $cardId
+            ],
+            [
+                'lang' => $lang,
+                'card_id' => $cardId,
+                'title' => $data['title'] ?? '',
+                'description' => $data['description'] ?? ''
+            ]
+        );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Card $card
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Card $card)
     {
-        //
+        return view('admin.cards.edit', ['card' => $card]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Card $card
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Card $card)
     {
-        //
+        $card->image = uniqid('', true);
+        $card->save();
+        if ($card->id !== null) {
+            $this->createContent($card->id, 'ru', $request->input('content.ru') ?? []);
+            $this->createContent($card->id, 'en', $request->input('content.en') ?? []);
+        }
+        return back()->with('success', 'Updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Card $card
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Card $card)
     {
-        //
+        $card->delete();
+        return redirect()->route('admin.cards.index')->with('success', 'Deleted');
     }
 }
