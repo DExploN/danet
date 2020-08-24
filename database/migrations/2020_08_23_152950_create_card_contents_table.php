@@ -20,7 +20,8 @@ class CreateCardContentsTable extends Migration
                 $table->unsignedBigInteger('card_id');
                 $table->char('lang', 3);
                 $table->string('title')->nullable(true);
-                $table->text('description')->nullable(true);
+                $table->text('question')->nullable(true);
+                $table->text('answer')->nullable(true);
                 $table->timestamps();
             }
         );

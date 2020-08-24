@@ -18,6 +18,8 @@ class CreateCardsTable extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('image', 255)->nullable(true);
+                $table->string('difficulty')->nullable(true);
+                $table->unsignedInteger('average_time')->nullable(true);
                 $table->timestamps();
             }
         );

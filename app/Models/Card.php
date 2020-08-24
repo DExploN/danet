@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Card extends Model
 {
-    protected $fillable = ['image'];
+    public const DIFFICULTY = ["EASY", "MEDIUM", "HARD"];
+    protected $fillable = ['image', 'difficulty', 'average_time'];
 
     public function contents()
     {

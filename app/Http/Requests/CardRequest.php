@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Card;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CardRequest extends FormRequest
 {
@@ -25,7 +27,9 @@ class CardRequest extends FormRequest
     {
         return [
             'content.ru.title' => ['required', 'max:255', 'min:3'],
-            'image' => ['image', 'file', 'max:1024']
+            'image' => ['image', 'file', 'max:1024'],
+            'difficulty' => ['required', Rule::in(Card::DIFFICULTY)],
+            'average_time' => ['integer']
         ];
     }
 

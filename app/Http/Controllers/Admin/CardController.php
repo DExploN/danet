@@ -32,6 +32,7 @@ class CardController extends Controller
     public function store(CardRequest $request)
     {
         $card = new Card();
+        $card->fill($request->request->all());
         $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {
@@ -70,7 +71,8 @@ class CardController extends Controller
                 'lang' => $lang,
                 'card_id' => $cardId,
                 'title' => $data['title'] ?? '',
-                'description' => $data['description'] ?? ''
+                'question' => $data['question'] ?? '',
+                'answer' => $data['answer'] ?? '',
             ]
         );
     }
@@ -84,6 +86,7 @@ class CardController extends Controller
 
     public function update(CardRequest $request, Card $card)
     {
+        $card->fill($request->request->all());
         $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {

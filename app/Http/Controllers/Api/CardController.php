@@ -23,8 +23,12 @@ class CardController extends Controller
                     return [
                         'id' => $card->id,
                         'image' => $card->imageUrl,
+                        'difficulty' => $card->difficulty,
+                        'averageTime' => $card->average_time,
+                        'lastModified' => $card->created_at->getTimestamp(),
                         'title' => $content->title,
-                        'description' => $content->description,
+                        'question' => $content->question,
+                        'answer' => $content->answer,
                     ];
                 }
             )->toArray();
