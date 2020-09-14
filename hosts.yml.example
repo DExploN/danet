@@ -1,0 +1,8 @@
+prod:
+  hostname:
+  port: 22
+  user:
+  deploy_path: /var/www/danetuser/data/www/danet.ru
+  branch: master
+  stage: prod
+  keep_releases: 3

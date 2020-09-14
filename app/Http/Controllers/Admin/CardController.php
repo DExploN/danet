@@ -25,7 +25,10 @@ class CardController extends Controller
 
     public function create()
     {
-        return view('admin.cards.create', ['card' => new Card()]);
+        $card = new Card();
+        $card->active = true;
+        $card->is_locked = false;
+        return view('admin.cards.create', ['card' => $card]);
     }
 
 
@@ -33,6 +36,10 @@ class CardController extends Controller
     {
         $card = new Card();
         $card->fill($request->request->all());
+
+        $card->active = $request->request->has('active') ? 1 : 0;
+        $card->is_locked = $request->request->has('is_locked') ? 1 : 0;
+
         $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {
@@ -87,6 +94,8 @@ class CardController extends Controller
     public function update(CardRequest $request, Card $card)
     {
         $card->fill($request->request->all());
+        $card->active = $request->request->has('active') ? 1 : 0;
+        $card->is_locked = $request->request->has('is_locked') ? 1 : 0;
         $this->saveImage($card, $request->file('image'));
         $card->save();
         if ($card->id !== null) {

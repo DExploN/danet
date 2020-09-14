@@ -15,8 +15,7 @@ class CardController extends Controller
         $offset = $request->query->getInt('offset');
         $limit = $request->query->getInt('limit');
         $lang = $request->query->get('lang') === 'en' ? 'en' : 'ru';
-
-        $cards = Card::query()->offset($offset)->limit($limit)->withContent($lang)->get()
+        $cards = Card::query()->whereActive(1)->offset($offset)->limit($limit)->withContent($lang)->get()
             ->map(
                 function (Card $card) use ($lang) {
                     $content = optional($card->getContent($lang));
@@ -25,10 +24,11 @@ class CardController extends Controller
                         'image' => $card->imageUrl,
                         'difficulty' => $card->difficulty,
                         'averageTime' => $card->average_time,
-                        'lastModified' => $card->created_at->getTimestamp(),
+                        'lastModified' => $card->updated_at->getTimestamp(),
                         'title' => $content->title,
                         'question' => $content->question,
                         'answer' => $content->answer,
+                        'is_locked' => (bool)$card->is_locked,
                     ];
                 }
             )->toArray();

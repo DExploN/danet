@@ -35,6 +35,26 @@
     </div>
 </div>
 
+<div class="form-group row">
+    <div class="col-6">
+        <div class="form-check">
+            <input type="checkbox" value="1" {{old('is_locked') == 1 ||  $card->is_locked==1 ? 'checked' : ''}}
+            class="form-check-input" name="is_locked" id="is_locked">
+            <label for="is_locked" class="form-check-label">isLocked</label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-6">
+        <div class="form-check">
+            <input type="checkbox" value="1" {{old('active') == 1 ||  $card->active==1 ? 'checked' : ''}}
+            class="form-check-input" name="active" id="active">
+            <label for="active" class="form-check-label">Active</label>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <label for="title" class="col">Title</label>
 </div>
