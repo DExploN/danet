@@ -28,7 +28,7 @@ class CardController extends Controller
                         'title' => $content->title,
                         'question' => $content->question,
                         'answer' => $content->answer,
-                        'is_locked' => (bool)$card->is_locked,
+                        'isLocked' => (bool)$card->is_locked,
                     ];
                 }
             )->toArray();
