@@ -30,7 +30,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{$cards->links()}}
+            {{$cards->appends(\Request::except('page'))->render()}}
         </div>
     </div>
 @endsection
