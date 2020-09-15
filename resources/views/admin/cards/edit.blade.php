@@ -6,7 +6,7 @@
             @csrf
             <h1 class="h3">Update</h1>
             <div class="row form-group">
-                <div class="col-6">
+                <div class="col-3">
                     <img class="card-img" src="{{$card->imageUrl}}"/>
                 </div>
             </div>
