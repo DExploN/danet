@@ -15,7 +15,9 @@ class CardController extends Controller
         $offset = $request->query->getInt('offset');
         $limit = $request->query->getInt('limit');
         $lang = $request->query->get('lang') === 'en' ? 'en' : 'ru';
-        $cards = Card::query()->whereActive(1)->offset($offset)->limit($limit)->withContent($lang)->get()
+        $cards = Card::query()
+            ->whereActive(1)->orderBy('id', 'desc')->offset($offset)->limit($limit)
+            ->withContent($lang)->get()
             ->map(
                 function (Card $card) use ($lang) {
                     $content = optional($card->getContent($lang));

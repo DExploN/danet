@@ -19,7 +19,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::sortable()->withContent('ru')->paginate(30);
+        $cards = Card::sortable(['id' => 'desc'])->withContent('ru')->paginate(30);
         return view('admin.cards.list', ['cards' => $cards]);
     }
 
