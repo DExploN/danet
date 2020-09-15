@@ -19,7 +19,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::withContent('ru')->paginate(30);
+        $cards = Card::sortable()->withContent('ru')->paginate(30);
         return view('admin.cards.list', ['cards' => $cards]);
     }
 
@@ -97,11 +97,13 @@ class CardController extends Controller
         $card->active = $request->request->has('active') ? 1 : 0;
         $card->is_locked = $request->request->has('is_locked') ? 1 : 0;
         $this->saveImage($card, $request->file('image'));
+        $card->setUpdatedAt($card->freshTimestamp());
         $card->save();
         if ($card->id !== null) {
             $this->createContent($card->id, 'ru', $request->input('content.ru') ?? []);
             $this->createContent($card->id, 'en', $request->input('content.en') ?? []);
         }
+
         return back()->with('success', 'Updated');
     }
 

@@ -4,11 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Kyslik\ColumnSortable\Sortable;
 
 class Card extends Model
 {
+    use Sortable;
+
     public const DIFFICULTY = ["EASY", "MEDIUM", "HARD"];
     protected $fillable = ['image', 'difficulty', 'average_time'];
+
+    public $sortable = [
+        'id',
+        'active',
+        'is_locked'
+    ];
 
     public function contents()
     {
